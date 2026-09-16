@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/* (CORS) Autorización para que el front (en la ruta
-"http://localhost:8080") consulte al back   */
-@CrossOrigin(origins = "http://localhost:8080")
-
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {

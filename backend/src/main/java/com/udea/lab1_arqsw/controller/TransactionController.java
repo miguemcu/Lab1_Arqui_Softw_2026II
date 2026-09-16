@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/* (CORS) Autorización para que el front (en la ruta
-"http://localhost:8080") consulte al back   */
-@CrossOrigin(origins = "http://localhost:8080")
-
 @RestController
 @RequestMapping(value="/api/transactions", produces = "application/json") // Mimetype de JSON
 public class TransactionController {

@@ -5,7 +5,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: udeabank
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -15,7 +15,7 @@ services:
       retries: 10
 
   backend:
-    build: ./lab1_arqsw
+    build: ./backend
     depends_on:
       mysql:
         condition: service_healthy
