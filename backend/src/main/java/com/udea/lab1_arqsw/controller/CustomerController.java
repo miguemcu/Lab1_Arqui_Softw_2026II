@@ -1,0 +1,42 @@
+package com.udea.lab1_arqsw.controller;
+
+import com.udea.lab1_arqsw.DTO.CustomerDTO;
+import com.udea.lab1_arqsw.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/* (CORS) Autorización para que el front (en la ruta
+"http://localhost:8080") consulte al back   */
+@CrossOrigin(origins = "http://localhost:8080")
+
+@RestController
+@RequestMapping("/api/customers")
+public class CustomerController {
+
+    @Autowired
+    private CustomerService customerFacade;
+
+    // Obtener todos los clientes
+    @GetMapping
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
+        return ResponseEntity.ok(customerFacade.getAllCustomers());
+    }
+
+    // Obtener un cliente por su id
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id) {
+        return ResponseEntity.ok(customerFacade.getCustomerById(id));
+    }
+
+    //Crear un nuevo cliente
+    @PostMapping
+    public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        if(customerDTO.getBalance()==null){
+            throw new IllegalArgumentException("Balance cannot be null");
+        }
+        return ResponseEntity.ok(customerFacade.createCustomer(customerDTO));
+    }
+}
