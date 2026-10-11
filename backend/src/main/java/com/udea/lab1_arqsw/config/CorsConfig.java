@@ -1,4 +1,4 @@
-package com.udea.lab1_arqsw.config;// ajusta al paquete real de tu proyecto
+package com.udea.lab1_arqsw.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

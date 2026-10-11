@@ -1,8 +1,6 @@
 /**
  * Configuración central de la API de UdeA Bank.
  *
- * Cambia BASE_URL (o define VITE_API_BASE_URL en el .env) cuando conozcas
- * la URL real del backend Spring Boot. Las rutas también son ajustables aquí.
  */
 export const BASE_URL: string =
   (import.meta.env["VITE_API_BASE_URL"] as string | undefined) ?? "http://localhost:8088";
