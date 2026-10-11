@@ -1,0 +1,60 @@
+name: CI/CD Pipeline
+
+# Ejecuta la validación en cambios directos, pull requests hacia main o manualmente.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# El workflow solo necesita leer el contenido del repositorio y usar el token automático.
+permissions:
+  contents: read
+
+# Evita consumir recursos en ejecuciones anteriores de la misma rama o pull request.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Ejecuta las pruebas y publica la cobertura generada por JaCoCo.
+  tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      # Obtiene el código que será compilado y probado.
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Instala Java 21 y reutiliza las dependencias Maven entre ejecuciones.
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Ejecuta compilación, pruebas y generación del reporte JaCoCo.
+      - name: Run tests
+        run: ./mvnw -B clean verify
+
+      # Conserva el reporte HTML/XML aunque las pruebas fallen.
+      - name: Upload JaCoCo report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: jacoco-report
+          path: backend/target/site/jacoco
+
+      # Envía el reporte XML a Coveralls usando el GITHUB_TOKEN automático.
+      - name: Publish coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          file: backend/target/site/jacoco/jacoco.xml
+          format: jacoco
