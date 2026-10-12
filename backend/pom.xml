@@ -32,6 +32,8 @@
 		<!-- Sobrescribe versiones con vulnerabilidades reportadas por Snyk; quitar con Spring Boot 4.0.9. -->
 		<tomcat.version>11.0.26</tomcat.version>
 		<jackson-bom.version>3.1.7</jackson-bom.version>
+		<!-- PostgreSQL 42.7.13 está afectado por vulnerabilidades reportadas por Snyk. -->
+		<postgresql.version>42.7.14</postgresql.version>
 		<!-- Identifica el proyecto y ubica el reporte XML de cobertura en SonarCloud. -->
 		<sonar.organization>miguemcu</sonar.organization>
 		<sonar.projectKey>miguemcu_Lab1_Arqui_Softw_2026II</sonar.projectKey>
@@ -85,8 +87,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -109,7 +111,7 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Base de datos en memoria para ejecutar las pruebas sin MySQL. -->
+		<!-- Base de datos en memoria para ejecutar las pruebas sin PostgreSQL. -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

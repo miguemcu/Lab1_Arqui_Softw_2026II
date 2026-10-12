@@ -27,7 +27,7 @@ Aplicación bancaria simple desarrollada como laboratorio de la materia Arquitec
 
 #### Requisitos previos
 - Motor compatible con Docker (como [Docker Desktop](https://www.docker.com/products/docker-desktop/), Podman o Docker Engine en WSL2/Linux) instalado y corriendo.
-- No se necesita instalar Java, Node, Maven ni MySQL localmente. Todo corre dentro de los contenedores.
+- No se necesita instalar Java, Node, Maven ni PostgreSQL localmente. Todo corre dentro de los contenedores.
 
 #### Pasos
 
@@ -45,7 +45,7 @@ Cuando termine, quedará disponible:
 |---|---|---|
 | Frontend | http://localhost:3000 | Interfaz web de la aplicación |
 | Backend (API) | http://localhost:8088 | API REST del backend |
-| MySQL (opcional, acceso externo) | localhost:3307 | Solo si se quiere inspeccionar la base con un cliente gráfico (DBeaver, MySQL Workbench, etc.) |
+| PostgreSQL (opcional, acceso externo) | localhost:5432 | Solo si se quiere inspeccionar la base con un cliente gráfico (DBeaver, pgAdmin, etc.) |
 
 > **Nota:** el proyecto arranca con la base de datos vacía. Se tendrá que crear al menos un cliente desde la vista "Crear cliente" del frontend antes de poder probar transferencias.
 
@@ -58,6 +58,29 @@ Para detener y borrar también los datos guardados (reiniciar desde cero):
 ```bash
 docker compose down -v
 ```
+
+#### Ejecución local con PostgreSQL
+
+El backend usa PostgreSQL por JDBC. Para ejecutar el stack local, crea un archivo
+`.env` en la raíz (está ignorado por Git) con las credenciales de PostgreSQL:
+
+```dotenv
+POSTGRES_USER=udeabank
+POSTGRES_PASSWORD=una-contraseña-local
+POSTGRES_DB=postgres
+```
+
+Para conectar el backend directamente a Supabase, configura estas variables:
+
+```dotenv
+SPRING_DATASOURCE_URL=jdbc:postgresql://HOST:5432/postgres?sslmode=require
+SPRING_DATASOURCE_USERNAME=usuario
+SPRING_DATASOURCE_PASSWORD=contraseña
+PORT=8088
+```
+
+La URL de Supabase debe usar el host y las credenciales proporcionados por el
+proyecto, manteniendo `sslmode=require`.
 
 ### 1.2. Funcionamiento de la app
 
@@ -83,7 +106,7 @@ El frontend sigue la paleta institucional de la Universidad de Antioquia: verde 
 #### Backend
 - Java 21
 - Spring Boot 4.0.8
-- Spring Data JPA + Hibernate (MySQL dialect, `ddl-auto=update`)
+- Spring Data JPA + Hibernate (`ddl-auto=update`)
 - MapStruct (mapeo entre entidades y DTOs)
 - Lombok
 - Arquitectura por capas: `controller → service → entity → repository`, con DTOs y mappers
@@ -96,16 +119,16 @@ El frontend sigue la paleta institucional de la Universidad de Antioquia: verde 
 - pnpm como gestor de paquetes
 
 #### Base de datos
-- MySQL 8.4 (imagen oficial de Docker)
+- PostgreSQL 16.4 (imagen oficial de Docker)
 
 #### Infraestructura
-- Docker + Docker Compose (backend, frontend y MySQL como servicios independientes, con red interna y volumen persistente para los datos de MySQL)
+- Docker + Docker Compose (backend, frontend y PostgreSQL como servicios independientes, con red interna y volumen persistente para los datos de PostgreSQL)
 
 ## 2. Laboratorio #2 - Calidad y Automatización
 
 En este laboratorio se incorporaron prácticas de calidad y automatización para el backend:
 
-- **Infraestructura de pruebas:** H2 en memoria y JaCoCo para ejecutar pruebas sin depender de MySQL y medir cobertura.
+- **Infraestructura de pruebas:** H2 en memoria y JaCoCo para ejecutar pruebas sin depender de PostgreSQL y medir cobertura.
 - **Pruebas automatizadas:** pruebas unitarias para services, controllers, mappers y DTOs.
 - **Integración continua:** workflow de CI/CD que ejecuta compilación, pruebas y publica los reportes de cobertura.
 - **Análisis estático:** integración con SonarQube Cloud para revisar calidad, seguridad, mantenibilidad y cobertura.
