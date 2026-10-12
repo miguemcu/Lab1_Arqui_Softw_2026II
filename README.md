@@ -11,6 +11,7 @@
 [![Security issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_security_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Known Vulnerabilities](https://snyk.io/test/github/miguemcu/Lab1_Arqui_Softw_2026II/badge.svg)](https://snyk.io/test/github/miguemcu/Lab1_Arqui_Softw_2026II)
 
 # UdeA Bank - Laboratorio de Arquitectura de Software
 
@@ -108,6 +109,7 @@ En este laboratorio se incorporaron prácticas de calidad y automatización para
 - **Pruebas automatizadas:** pruebas unitarias para services, controllers, mappers y DTOs.
 - **Integración continua:** workflow de CI/CD que ejecuta compilación, pruebas y publica los reportes de cobertura.
 - **Análisis estático:** integración con SonarQube Cloud para revisar calidad, seguridad, mantenibilidad y cobertura.
+- **Análisis de dependencias:** integración con Snyk para analizar las librerías importadas de terceros y evitar vulnerabilidades en ellas.
 
 [![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-highlight.svg)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=miguemcu_Lab1_Arqui_Softw_2026II)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
