@@ -32,6 +32,8 @@
 		<!-- Sobrescribe versiones con vulnerabilidades reportadas por Snyk; quitar con Spring Boot 4.0.9. -->
 		<tomcat.version>11.0.26</tomcat.version>
 		<jackson-bom.version>3.1.7</jackson-bom.version>
+		<!-- PostgreSQL 42.7.13 está afectado por vulnerabilidades reportadas por Snyk. -->
+		<postgresql.version>42.7.14</postgresql.version>
 		<!-- Identifica el proyecto y ubica el reporte XML de cobertura en SonarCloud. -->
 		<sonar.organization>miguemcu</sonar.organization>
 		<sonar.projectKey>miguemcu_Lab1_Arqui_Softw_2026II</sonar.projectKey>
