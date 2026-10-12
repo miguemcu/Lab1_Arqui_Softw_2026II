@@ -28,9 +28,11 @@ jobs:
       run:
         working-directory: backend
     steps:
-      # Obtiene el código que será compilado y probado.
+      # Obtiene todo el historial para que Sonar calcule correctamente el análisis.
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       # Instala Java 21 y reutiliza las dependencias Maven entre ejecuciones.
       - name: Set up Java
@@ -40,9 +42,18 @@ jobs:
           java-version: '21'
           cache: maven
 
-      # Ejecuta compilación, pruebas y generación del reporte JaCoCo.
+      # Reutiliza la caché local de Sonar sin duplicar la caché de dependencias Maven.
+      - name: Cache Sonar
+        uses: actions/cache@v6
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+
+      # Ejecuta compilación, pruebas, JaCoCo y el análisis de SonarCloud.
       - name: Run tests
-        run: ./mvnw -B clean verify
+        run: ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # Conserva el reporte HTML/XML aunque las pruebas fallen.
       - name: Upload JaCoCo report
