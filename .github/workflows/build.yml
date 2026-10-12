@@ -122,3 +122,43 @@ jobs:
         run: ./mvnw -B sonar:sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # Escanea las dependencias y el código en paralelo con los demás jobs.
+  snyk:
+    name: Snyk security scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      # Obtiene el código que Snyk analizará.
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Instala Java 21 y reutiliza las dependencias Maven para el análisis.
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Instala el ejecutable de Snyk desde la acción fijada a un commit inmutable.
+      - name: Set up Snyk
+        uses: snyk/actions/setup@11b673cfb4b0dc0d860a1323caa199d54950dcce # master 2026-10-07
+
+      # TODO: quitar continue-on-error cuando se haya revisado el reporte inicial de Snyk.
+      - name: Snyk test
+        continue-on-error: true
+        run: snyk test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # Registra el proyecto en Snyk únicamente en pushes a main.
+      - name: Snyk monitor
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: snyk monitor
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
