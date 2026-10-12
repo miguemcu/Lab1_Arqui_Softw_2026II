@@ -68,6 +68,7 @@ El backend usa PostgreSQL por JDBC. Para ejecutar el stack local, crea un archiv
 POSTGRES_USER=udeabank
 POSTGRES_PASSWORD=una-contraseña-local
 POSTGRES_DB=postgres
+VITE_API_BASE_URL=http://localhost:8088
 ```
 
 Para conectar el backend directamente a Supabase, configura estas variables:
@@ -81,6 +82,11 @@ PORT=8088
 
 La URL de Supabase debe usar el host y las credenciales proporcionados por el
 proyecto, manteniendo `sslmode=require`.
+
+`VITE_API_BASE_URL` se incorpora en el build del frontend. Para publicar la
+imagen en CI, configura una variable de repositorio llamada `VITE_API_BASE_URL`
+con la URL pública del backend; no se debe cambiar después de iniciar el
+contenedor sin reconstruir la imagen.
 
 ### 1.2. Funcionamiento de la app
 
