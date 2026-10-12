@@ -29,6 +29,10 @@
 	<properties>
 		<java.version>21</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<!-- Identifica el proyecto y ubica el reporte XML de cobertura en SonarCloud. -->
+		<sonar.organization>miguemcu</sonar.organization>
+		<sonar.projectKey>miguemcu_Lab1_Arqui_Softw_2026II</sonar.projectKey>
+		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -119,6 +123,16 @@
 	</dependencies>
 
 	<build>
+		<!-- Fija la versión del scanner de Sonar usada por el goal invocado en CI. -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>5.8.0.7211</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
