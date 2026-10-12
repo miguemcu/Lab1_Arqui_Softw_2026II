@@ -1,0 +1,8 @@
+version: 2
+
+# Revisa semanalmente las versiones de las acciones usadas por los workflows.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
