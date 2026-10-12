@@ -29,6 +29,9 @@
 	<properties>
 		<java.version>21</java.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<!-- Sobrescribe versiones con vulnerabilidades reportadas por Snyk; quitar con Spring Boot 4.0.9. -->
+		<tomcat.version>11.0.26</tomcat.version>
+		<jackson-bom.version>3.1.7</jackson-bom.version>
 		<!-- Identifica el proyecto y ubica el reporte XML de cobertura en SonarCloud. -->
 		<sonar.organization>miguemcu</sonar.organization>
 		<sonar.projectKey>miguemcu_Lab1_Arqui_Softw_2026II</sonar.projectKey>
@@ -39,14 +42,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
-		<!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.15.0</version>
-		</dependency>
-
 
 		<!-- Source: https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
 		<dependency>

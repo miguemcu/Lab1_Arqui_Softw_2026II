@@ -149,9 +149,8 @@ jobs:
       - name: Set up Snyk
         uses: snyk/actions/setup@11b673cfb4b0dc0d860a1323caa199d54950dcce # master 2026-10-07
 
-      # TODO: quitar continue-on-error cuando se haya revisado el reporte inicial de Snyk.
+      # Falla el job si Snyk detecta vulnerabilidades de severidad alta o crítica.
       - name: Snyk test
-        continue-on-error: true
         run: snyk test --severity-threshold=high
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
