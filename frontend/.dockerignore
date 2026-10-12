@@ -10,3 +10,7 @@ dist-ssr
 .vscode
 *.log
 *.local
+# Evita enviar configuraciones de entorno y posibles secretos al contexto de Docker.
+.env
+.env.*
+!.env.example
