@@ -1,3 +1,17 @@
+[![CI/CD Pipeline](https://github.com/miguemcu/Lab1_Arqui_Softw_2026II/actions/workflows/build.yml/badge.svg)](https://github.com/miguemcu/Lab1_Arqui_Softw_2026II/actions/workflows/build.yml)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Coverage Status](https://coveralls.io/repos/github/miguemcu/Lab1_Arqui_Softw_2026II/badge.svg?branch=main)](https://coveralls.io/github/miguemcu/Lab1_Arqui_Softw_2026II?branch=main)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=coverage)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Maintainability issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_maintainability_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Reliability issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_reliability_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Security issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_security_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+
 # UdeA Bank - Laboratorio de Arquitectura de Software
 
 Aplicación bancaria simple desarrollada como laboratorio de la materia Arquitectura de Software (UdeA). Permite consultar clientes, transferir dinero entre cuentas y ver el histórico de transacciones.
@@ -88,20 +102,6 @@ El frontend sigue la paleta institucional de la Universidad de Antioquia: verde 
 
 ## 2. Laboratorio #2 - Calidad y Automatización
 
-[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Coverage Status](https://coveralls.io/repos/github/miguemcu/Lab1_Arqui_Softw_2026II/badge.svg?branch=main)](https://coveralls.io/github/miguemcu/Lab1_Arqui_Softw_2026II?branch=main)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=coverage)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Maintainability issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_maintainability_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Reliability issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_reliability_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Security issues](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=software_quality_security_issues)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=miguemcu_Lab1_Arqui_Softw_2026II&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=miguemcu_Lab1_Arqui_Softw_2026II)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
-
 En este laboratorio se incorporaron prácticas de calidad y automatización para el backend:
 
 - **Infraestructura de pruebas:** H2 en memoria y JaCoCo para ejecutar pruebas sin depender de MySQL y medir cobertura.
@@ -109,4 +109,5 @@ En este laboratorio se incorporaron prácticas de calidad y automatización para
 - **Integración continua:** workflow de CI/CD que ejecuta compilación, pruebas y publica los reportes de cobertura.
 - **Análisis estático:** integración con SonarQube Cloud para revisar calidad, seguridad, mantenibilidad y cobertura.
 
-[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-dark.svg)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-highlight.svg)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=miguemcu_Lab1_Arqui_Softw_2026II)](https://sonarcloud.io/summary/new_code?id=miguemcu_Lab1_Arqui_Softw_2026II)
