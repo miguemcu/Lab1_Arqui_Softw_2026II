@@ -49,11 +49,21 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
 
-      # Ejecuta compilación, pruebas, JaCoCo y el análisis de SonarCloud.
+      # Ejecuta compilación, pruebas y generación del reporte JaCoCo.
+      # Como alternativa, Sonar podría ejecutarse en esta misma invocación de verify;
+      # separarlo facilita visualizarlo como una etapa independiente en la entrega.
       - name: Run tests
-        run: ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./mvnw -B clean verify
+
+      # Comparte solo las clases y el reporte necesarios para el análisis de Sonar.
+      - name: Upload Sonar analysis inputs
+        uses: actions/upload-artifact@v7
+        with:
+          name: sonar-analysis-inputs
+          path: |
+            backend/target/classes
+            backend/target/test-classes
+            backend/target/site/jacoco
 
       # Conserva el reporte HTML/XML aunque las pruebas fallen.
       - name: Upload JaCoCo report
@@ -69,3 +79,46 @@ jobs:
         with:
           file: backend/target/site/jacoco/jacoco.xml
           format: jacoco
+
+  # Analiza el código ya compilado sin repetir verify ni las pruebas.
+  sonar:
+    name: Sonar analysis
+    needs: tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      # Obtiene el historial completo para que Sonar identifique correctamente el código nuevo.
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Instala Java 21 para ejecutar el scanner Maven.
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      # Reutiliza la caché del scanner sin duplicar la caché Maven de setup-java.
+      - name: Cache Sonar
+        uses: actions/cache@v6
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+
+      # Restaura exactamente las rutas target que Sonar necesita para analizar sin compilar.
+      - name: Download Sonar analysis inputs
+        uses: actions/download-artifact@v8
+        with:
+          name: sonar-analysis-inputs
+          path: backend/target
+
+      # Ejecuta únicamente el análisis sobre las clases y el reporte descargados.
+      - name: Run Sonar analysis
+        run: ./mvnw -B sonar:sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
