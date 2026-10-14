@@ -233,3 +233,40 @@ jobs:
           labels: ${{ steps.frontend-meta.outputs.labels }}
           cache-from: type=gha,scope=frontend
           cache-to: type=gha,mode=max,scope=frontend
+
+  # Solicita el despliegue en Render después de publicar las imágenes en Docker Hub.
+  deploy:
+    name: Deploy
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    environment: production
+    env:
+      # URL pública configurada como variable del repositorio o del entorno de GitHub.
+      APP_URL: ${{ vars.RENDER_PUBLIC_URL }}
+    steps:
+      # Activa el deploy hook sin mostrar su URL sensible en los logs.
+      - name: Trigger Render deploy
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$RENDER_DEPLOY_HOOK"
+
+      # Espera el cold start del plan gratuito de Render antes de validar la API.
+      - name: Smoke test
+        shell: bash
+        run: |
+          for attempt in $(seq 1 18); do
+            status_code="$(curl -fsS -o /dev/null -w "%{http_code}" "$APP_URL/api/customers" || true)"
+            if [ "$status_code" = "200" ]; then
+              echo "Smoke test passed on attempt $attempt."
+              exit 0
+            fi
+            if [ "$attempt" -lt 18 ]; then
+              echo "Attempt $attempt returned HTTP $status_code; waiting 10 seconds for Render cold start."
+              sleep 10
+            fi
+          done
+          echo "Smoke test failed after 18 attempts."
+          exit 1
