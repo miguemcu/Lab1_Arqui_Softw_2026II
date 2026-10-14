@@ -1,0 +1,11 @@
+# Política de Snyk para el backend.
+# Excepción temporal: XXE en jaxb-core 4.0.9 (vía Hibernate). No hay parche disponible.
+# No es alcanzable: la app solo recibe JSON y Hibernate solo lee XML de configuración propia.
+# Revisar en 30 días o al salir un Spring Boot que actualice Hibernate/JAXB.
+version: v1.25.0
+ignore:
+  SNYK-JAVA-ORGGLASSFISHJAXB-20883142:
+    - '*':
+        reason: Sin parche disponible; no alcanzable en esta aplicación (solo JSON y XML de configuración propia).
+        expires: 2026-11-13T00:00:00.000Z
+        created: 2026-10-14T00:00:00.000Z
